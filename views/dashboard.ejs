@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: skyblue;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: rgb(255, 255, 255);
+            width: 50%;
+            margin: 3% auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: lightcoral; /* Light Red */
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: gray;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+        button {
+            background-color: lightcoral; /* Light Red */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+        .chart-container {
+            margin-top: 40px;
+        }
+        p {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Dashboard</h1>
+        <h1>Welcome to Your Dashboard, <%= user.name %>!</h1>
+
+
+        <form action="/dashboard" method="POST">
+            <label for="initialamount">Initial Amount:</label>
+            <input type="number" id="initialamount" name="initialamount" required>
+
+            <label for="description">Expense Description:</label>
+            <input type="text" id="description" name="description" required>
+
+            <label for="amount">Expense Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <button type="submit">Add Expense</button>
+        </form>
+         <!-- Logout Button -->
+          <br><hr>
+     <form action="/logout" method="GET">
+        <button class="logout-btn">Logout</button>
+    </form>
+
+        <!-- Show an alert if the expense amount exceeds the initial amount -->
+        <% if (typeof initialamount !== 'undefined' && typeof amount !== 'undefined') { %>
+            <% if (amount > initialamount) { %>
+                <p>Warning: The expense amount exceeds the initial amount!</p>
+            <% } %>
+        <% } %>
+
+        <!-- Expense Chart -->
+        <div class="chart-container">
+            <canvas id="expenseChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Example data from the backend
+        const labels = <%- JSON.stringify(expenseDescriptions) %>;
+        const expenseData = <%- JSON.stringify(expenseAmounts) %>;
+
+        // Chart.js setup
+        const ctx = document.getElementById('expenseChart').getContext('2d');
+        const expenseChart = new Chart(ctx, {
+            type: 'bar', // You can also use 'line' or other chart types
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Expenses',
+                    data: expenseData,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)', // Light Red for bars
+                    borderColor: 'rgba(255, 99, 132, 1)', // Light Red for borders
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+     <!-- Logout Button -->
+     <!-- <form action="/logout" method="GET">
+        <button class="logout-btn">Logout</button>
+    </form> -->
+</body>
+</html>

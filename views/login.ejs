@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: skyblue;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: white;
+            width: 40%;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: lightcoral; /* Light Red */
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: gray;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+        button {
+            background-color: lightcoral; /* Light Red */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+        p {
+            text-align: center;
+            color: gray;
+        }
+        a {
+            color: lightcoral;
+            text-decoration: none;
+        }
+        /* body {
+            background-color: lightgray;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: white;
+            width: 40%;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: skyblue;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: gray;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+        button {
+            background-color: skyblue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: dodgerblue;
+        }
+        p {
+            text-align: center;
+            color: gray;
+        }
+        a {
+            color: skyblue;
+            text-decoration: none;
+        } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/signup">Sign up here</a>.</p>
+    </div>
+</body>
+</html>
