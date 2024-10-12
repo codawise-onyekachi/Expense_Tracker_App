@@ -6,8 +6,17 @@
     <title>Sign Up</title>
     <style>
         body {
-            background-color: skyblue;
-            font-family: Arial, sans-serif;
+            background-image: url('/images/background.jpg');
+            height: 100vh;
+            background-size: cover; /* Ensures the image covers the entire element */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Send background behind content */
         }
         .container {
             background-color: white;

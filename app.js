@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const path = require('path');
 
 app.use(session({
     secret: "secret",
@@ -15,6 +16,9 @@ app.use(session({
 app.set('view engine' , 'ejs');
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', (req, res) => {
@@ -165,7 +169,7 @@ app.post('/dashboard', async (req, res) => {
         });
 
         // Redirect back to the dashboard
-        res.redirect('/dashboard');
+        res.redirect('/viewexpense');
     } catch (error) {
         res.status(500).send('Error adding expense');
     }
@@ -176,6 +180,11 @@ app.post('/dashboard', async (req, res) => {
 //         res.redirect('/login');
 //     });
 // });
+
+app.get('/viewexpense', isAuthenticated, async (req, res) => {
+    const expenses = await sequelize.models.expenses.findAll();
+    res.render('viewexpense', { expenses });
+});
 
 // Logout route
 app.get('/logout', (req, res) => {

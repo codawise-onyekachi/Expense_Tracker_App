@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Expenses</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+
+<style>
+    body {
+        background-image: url('/images/background.jpg');
+        height: 100vh;
+        background-size: cover; /* Ensures the image covers the entire element */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents the image from repeating */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Send background behind content */
+    }
+    
+    .container {
+        background-color: rgb(255, 255, 255);
+        width: 50%;
+        margin: 3% auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: lightcoral; /* Light Red */
+    }
+    label {
+        display: block;
+        margin: 10px 0 5px;
+        color: gray;
+    }
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid gray;
+        border-radius: 5px;
+    }
+    button {
+        background-color: lightcoral; /* Light Red */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+    button:hover {
+        background-color: darkred;
+    }
+    .chart-container {
+        margin-top: 40px;
+    }
+    p {
+        color: red;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<body>
+    <div class="container">
+        <h1>View Expenses</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Initial Amount</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% expenses.forEach(expense => { %>
+                <tr>
+                    <td><%= expense.initialamount %></td>
+                    <td><%= expense.description %></td>
+                    <td><%= expense.amount %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <a href="/dashboard" class="btn btn-primary">Go Back to Dashboard</a>
+    </div>
+</body>
+</html>
